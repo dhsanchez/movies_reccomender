@@ -1,0 +1,70 @@
+# ============================================================
+#  movies_recommender — .gitignore
+# ============================================================
+
+# --- Secretos -----------------------------------------------
+# API key de TMDB y cualquier otra credencial
+.env
+.env.*
+!.env.example          # plantilla sin valores reales, sí se versiona
+
+# --- Datos (se regeneran con el pipeline) -------------------
+# Estructura prevista:
+#   data/raw/          -> ZIP y CSVs del export de Letterboxd
+#   data/interim/      -> tablas intermedias (matching, limpieza)
+#   data/processed/    -> tablas finales en parquet
+#   data/external/     -> MovieLens u otros datasets descargados
+# Se ignora todo el contenido, pero se conservan las carpetas
+# mediante archivos .gitkeep vacíos.
+data/**
+!data/**/
+!data/**/.gitkeep
+
+# Por si el ZIP de Letterboxd acaba fuera de data/
+letterboxd-*.zip
+*.zip
+
+# --- Cachés -------------------------------------------------
+# Respuestas crudas de la API de TMDB
+cache/
+# Base de datos local de DuckDB
+*.duckdb
+*.duckdb.wal
+
+# --- Modelos y artefactos -----------------------------------
+# Modelos entrenados, embeddings, matrices de factores
+models/
+*.pkl
+*.joblib
+*.npy
+*.npz
+
+# --- Entorno Python -----------------------------------------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# --- Tests y calidad de código ------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# --- Notebooks ----------------------------------------------
+.ipynb_checkpoints/
+
+# --- Editor / sistema operativo -----------------------------
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Logs ---------------------------------------------------
+logs/
+*.log
